@@ -8,8 +8,7 @@ class Command(BaseCommand):
 
     def handle(self, *args, **kwargs):
         # 📥 Ruta del archivo CSV con las descripciones actualizadas
-        csv_file = 'updated_movie_descriptions.csv'  # ← Puedes cambiar el nombre si es necesario
-
+        csv_file = 'movie/management/commands/updated_movie_descriptions.csv'
         # ✅ Verifica si el archivo existe
         if not os.path.exists(csv_file):
             self.stderr.write(f"CSV file '{csv_file}' not found.")
@@ -26,10 +25,10 @@ class Command(BaseCommand):
 
                 try:
                     # ❗ Aquí debes completar el código para buscar la película por título
-                    movie = __________.objects.get(__________)
+                    movie = Movie.objects.get(title=title)
 
                     # ❗ Aquí debes actualizar la descripción de la película
-                    movie.__________ = __________
+                    movie.description = new_description
                     movie.save()
                     updated_count += 1
 
